@@ -1,0 +1,14 @@
+# =======================================================
+# BLOCK ALL ACCESS TO MIGRATIONS DIRECTORY
+# This directory contains database migration files
+# =======================================================
+
+# Deny all access
+Order deny,allow
+Deny from all
+
+# Alternative method using mod_rewrite
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule .* - [F,L]
+</IfModule>

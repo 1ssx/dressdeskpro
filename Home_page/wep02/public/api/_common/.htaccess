@@ -1,0 +1,15 @@
+# =======================================================
+# BLOCK ALL ACCESS TO API INTERNAL DIRECTORY
+# The _common directory contains internal API utilities
+# that should never be accessed directly via browser
+# =======================================================
+
+# Deny all access
+Order deny,allow
+Deny from all
+
+# Alternative method using mod_rewrite
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule .* - [F,L]
+</IfModule>

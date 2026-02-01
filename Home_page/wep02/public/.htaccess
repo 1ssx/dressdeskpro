@@ -1,0 +1,86 @@
+# =======================================================
+# PUBLIC DIRECTORY SECURITY
+# Multi-Tenant SaaS System - Public Folder Protection
+# =======================================================
+
+# Disable directory browsing
+Options -Indexes
+
+# =======================================================
+# BLOCK API INTERNAL FILES
+# =======================================================
+
+# Block access to files starting with underscore (internal API files)
+<FilesMatch "^_">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# =======================================================
+# BLOCK TEST/DEBUG FILES IN PUBLIC
+# =======================================================
+
+<FilesMatch "^(test_auto_save|test_env_config|test_whatsapp|debug_session|check_schema|setup_master_admin)\.php$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Block test HTML files
+<FilesMatch "^test_.*\.html$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# =======================================================
+# PROTECT TEMPORARY DIRECTORIES
+# =======================================================
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Block direct access to temp_invoices directory
+    RewriteRule ^temp_invoices/ - [F,L]
+    
+    # Block direct access to temp_pdfs directory
+    RewriteRule ^temp_pdfs/ - [F,L]
+    
+    # Block access to assets/uploads if sensitive
+    # RewriteRule ^assets/uploads/.*\.(php|phtml|php3|php4|php5|phps)$ - [F,L]
+</IfModule>
+
+# =======================================================
+# PREVENT PHP EXECUTION IN UPLOADS ONLY
+# =======================================================
+
+# IMPORTANT: This must ONLY apply to uploaded files, NOT to all PHP files!
+# The rule below is commented out because it was incorrectly blocking ALL PHP execution.
+# Instead, use directory-specific .htaccess files in upload directories.
+
+# Note: If you have an uploads directory, create a separate .htaccess there with:
+# php_flag engine off
+
+# =======================================================
+# PHP SETTINGS FOR PUBLIC DIRECTORY
+# =======================================================
+
+# Error display is now controlled by APP_DEBUG in .env via the application.
+# Do NOT force display_errors Off here - it breaks local debugging.
+# Production mode is handled by the app when APP_DEBUG=false.
+
+<IfModule mod_php.c>
+    # Always enable error logging
+    php_value log_errors On
+</IfModule>
+
+# =======================================================
+# CORS HEADERS FOR API
+# =======================================================
+
+<IfModule mod_headers.c>
+    # Allow CORS for API endpoints (adjust as needed)
+    <FilesMatch "\.php$">
+        Header set Access-Control-Allow-Origin "*"
+        Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+        Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+    </FilesMatch>
+</IfModule>

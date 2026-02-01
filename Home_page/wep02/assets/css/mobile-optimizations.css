@@ -1,0 +1,625 @@
+/* ============================================
+   MOBILE UX OPTIMIZATION - COMPACT DENSITY MODE
+   Target: 80% Mobile Users
+   Goal: Native-app-like, minimal scrolling experience
+   ============================================ */
+
+/* ===== ROOT OVERRIDES FOR MOBILE ===== */
+@media (max-width: 768px) {
+    :root {
+        --mobile-touch-target: 44px;
+        --mobile-spacing-xs: 6px;
+        --mobile-spacing-sm: 10px;
+        --mobile-spacing-md: 14px;
+        --mobile-spacing-lg: 18px;
+    }
+}
+
+/* ============================================
+   1. MISSION CRITICAL: ADD INVOICE PAGE
+   Compact Density Mode for forms
+   ============================================ */
+
+@media (max-width: 768px) {
+    /* ----- Main Content Padding ----- */
+    .main-content {
+        padding: 12px !important;
+        margin-right: 0 !important;
+    }
+
+    /* ----- Invoice Header - Compact ----- */
+    .invoice-header {
+        margin-bottom: 14px;
+        gap: 10px;
+    }
+
+    .invoice-header .section-title {
+        font-size: 1.2rem;
+        margin-bottom: 0;
+    }
+
+    .invoice-header .section-title i {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+
+    /* ----- Invoice Actions - Horizontal on Mobile ----- */
+    .invoice-actions {
+        flex-direction: row !important;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .invoice-actions .btn {
+        padding: 10px 14px;
+        font-size: 0.85rem;
+        flex: 1;
+        min-height: var(--mobile-touch-target);
+        border-radius: 8px;
+    }
+
+    .invoice-actions .btn i {
+        font-size: 1rem;
+    }
+
+    /* Hide button text on very small screens, keep icons */
+    @media (max-width: 400px) {
+        .invoice-actions .btn {
+            padding: 10px;
+        }
+        .invoice-actions .btn i {
+            margin: 0;
+        }
+    }
+
+    /* ----- Invoice Form Container - Compact ----- */
+    .invoice-form {
+        padding: 14px;
+        margin-bottom: 14px;
+        border-radius: 12px;
+    }
+
+    /* ----- Form Sections - Drastically Reduced Spacing ----- */
+    .form-section {
+        margin-bottom: 14px;
+        padding-bottom: 12px;
+    }
+
+    .form-section h3 {
+        font-size: 0.95rem;
+        margin-bottom: 12px;
+        gap: 8px;
+    }
+
+    .form-section h3 i {
+        width: 28px;
+        height: 28px;
+        font-size: 0.85rem;
+        border-radius: 6px;
+    }
+
+    /* ----- Form Rows - 2-Column Grid for Short Fields ----- */
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    /* Full width for specific fields */
+    .form-group.full-width,
+    .form-row:has(.form-group:only-child) .form-group,
+    .form-section:has(#customer-name) .form-row .form-group,
+    .form-section:has(#dress-name) .form-row:first-of-type .form-group,
+    .form-section:has(#invoice-notes) .form-group {
+        grid-column: 1 / -1;
+    }
+
+    /* ----- Form Groups - Compact ----- */
+    .form-group {
+        min-width: unset !important;
+        flex: unset !important;
+    }
+
+    .form-group label {
+        font-size: 0.8rem;
+        margin-bottom: 5px;
+        font-weight: 600;
+        color: #666;
+    }
+
+    /* ----- Inputs - Optimized Touch Targets ----- */
+    .form-group input[type="text"],
+    .form-group input[type="number"],
+    .form-group input[type="tel"],
+    .form-group input[type="date"],
+    .form-group select,
+    .form-group textarea {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+        border-radius: 8px;
+        min-height: var(--mobile-touch-target);
+    }
+
+    .form-group textarea {
+        min-height: 60px;
+    }
+
+    /* ----- Checkboxes - Compact Grid ----- */
+    .checkbox-group {
+        padding: 10px 12px;
+        border-radius: 8px;
+        gap: 8px;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+    }
+
+    .checkbox-group label {
+        font-size: 0.85rem;
+    }
+
+    /* Accessories Section - Compact Grid */
+    #accessories-section {
+        padding-top: 8px !important;
+    }
+
+    #accessories-section .form-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    #accessories-section .checkbox-group {
+        flex: 1 1 45%;
+        margin-left: 0 !important;
+        padding: 8px 10px;
+    }
+
+    /* ----- Price Fields Row - Always 3 columns ----- */
+    .form-section:has(#total-price) .form-row {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 8px;
+    }
+
+    @media (max-width: 480px) {
+        .form-section:has(#total-price) .form-row {
+            grid-template-columns: 1fr 1fr;
+        }
+        .form-section:has(#total-price) .form-group:last-child {
+            grid-column: 1 / -1;
+        }
+    }
+
+    /* ----- Modal Optimization ----- */
+    .modal-content {
+        width: 95%;
+        padding: 18px;
+        border-radius: 14px;
+        margin: 3% auto;
+        max-height: 92vh;
+    }
+
+    .modal h2 {
+        font-size: 1.2rem;
+        padding-bottom: 10px;
+        margin-bottom: 14px;
+    }
+}
+
+/* ============================================
+   2. INVENTORY & CUSTOMER TABLES - RESPONSIVE
+   Convert to Card View on Mobile
+   ============================================ */
+
+@media (max-width: 768px) {
+    /* ----- Inventory Stats Grid - Compact ----- */
+    .inventory-stats,
+    .customers-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 16px;
+    }
+
+    .inventory-stats .stat-card,
+    .customers-stats .stat-card,
+    .stat-card {
+        padding: 14px 12px;
+        border-radius: 10px;
+    }
+
+    .stat-icon,
+    .inventory-stats .stat-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .stat-icon i,
+    .inventory-stats .stat-icon i {
+        font-size: 1.1rem;
+    }
+
+    .stat-value,
+    .inventory-stats .stat-value {
+        font-size: 1.3rem;
+    }
+
+    .stat-content h3,
+    .inventory-stats .stat-content h3 {
+        font-size: 0.75rem;
+    }
+
+    /* ----- Table Container - Horizontal Scroll ----- */
+    .inventory-table-container,
+    .movements-table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 0 -12px;
+        padding: 0 12px;
+    }
+
+    /* ----- Tables - Minimum Width to Prevent Breaking ----- */
+    .inventory-table,
+    .customers-table,
+    .suppliers-table,
+    .movements-table {
+        min-width: 600px;
+    }
+
+    .inventory-table th,
+    .inventory-table td,
+    .customers-table th,
+    .customers-table td {
+        padding: 10px 12px;
+        font-size: 0.85rem;
+    }
+
+    /* ----- Action Buttons - Always Visible ----- */
+    .inventory-table .btn-action,
+    .customers-table .action-btn {
+        min-width: 36px;
+        min-height: 36px;
+    }
+
+    /* ----- Alternative: Card View for Customer Table ----- */
+    /* Uncomment below to enable card view instead of scrollable table */
+    /*
+    .customers-table {
+        display: none;
+    }
+
+    .customers-cards-view.mobile-active {
+        display: grid !important;
+    }
+    */
+
+    /* ----- Customer Cards - Compact ----- */
+    .customers-cards-view {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .customer-card {
+        border-radius: 12px;
+    }
+
+    .card-header {
+        padding: 14px;
+        gap: 12px;
+    }
+
+    .card-avatar {
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
+        border-radius: 12px;
+    }
+
+    .card-title h3 {
+        font-size: 1rem;
+    }
+
+    .card-body {
+        padding: 14px;
+    }
+
+    .info-item {
+        margin-bottom: 10px;
+        font-size: 0.85rem;
+    }
+
+    .card-actions {
+        padding: 12px 14px;
+        gap: 8px;
+    }
+
+    .card-btn {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+
+    /* ----- Search & Filter - Stacked ----- */
+    .customers-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .customers-actions .search-filter {
+        width: 100%;
+        min-width: unset;
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+    }
+
+    .search-filter .search-box,
+    .search-filter .filter-select {
+        width: 100%;
+        min-width: unset;
+        border-right: none;
+        border-bottom: 1px solid #eee;
+        padding: 8px 0;
+    }
+
+    .search-filter .filter-select:last-child {
+        border-bottom: none;
+    }
+
+    .customers-actions button.btn.primary {
+        width: 100%;
+        height: 48px;
+    }
+
+    /* ----- Inventory Actions ----- */
+    .inventory-actions {
+        justify-content: stretch;
+        flex-direction: column;
+    }
+
+    .inventory-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* ----- Inventory Tabs - Scrollable ----- */
+    .inventory-tabs .tabs {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 0 -12px;
+        padding: 0 12px;
+        gap: 0;
+    }
+
+    .inventory-tabs .tab {
+        padding: 10px 14px;
+        font-size: 0.85rem;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    /* ----- Inventory Search Filter ----- */
+    .inventory-tabs .search-filter {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .inventory-tabs .search-box {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .inventory-tabs .filter-select {
+        width: 100%;
+    }
+}
+
+/* Smaller screens - single column stats */
+@media (max-width: 480px) {
+    .inventory-stats,
+    .customers-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   3. GLOBAL TOUCH TARGET & INTERACTION FIXES
+   ============================================ */
+
+@media (max-width: 768px) {
+    /* ----- Buttons - Minimum Touch Target ----- */
+    .btn,
+    button,
+    .action-btn,
+    .btn-action,
+    .card-btn {
+        min-height: 44px;
+    }
+
+    /* ----- Inputs - Minimum Touch Target ----- */
+    input,
+    select,
+    textarea {
+        min-height: 44px;
+    }
+
+    /* ----- Links in Lists - Larger Tap Area ----- */
+    .nav-link,
+    .sidebar-link {
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+    }
+
+    /* ----- Pagination - Touch Friendly ----- */
+    .pagination-btn,
+    .pagination-numbers button {
+        width: 44px;
+        height: 44px;
+    }
+
+    .pagination {
+        gap: 6px;
+        margin-top: 20px;
+    }
+}
+
+/* ============================================
+   4. SIDEBAR & NAVIGATION FIXES
+   ============================================ */
+
+@media (max-width: 1024px) {
+    /* Ensure content doesn't get obscured */
+    .main-content {
+        margin-right: 0 !important;
+        width: 100% !important;
+    }
+}
+
+/* ============================================
+   5. SECTION CARDS & MODALS - COMPACT
+   ============================================ */
+
+@media (max-width: 768px) {
+    .section-card {
+        padding: 14px;
+        border-radius: 12px;
+        margin-bottom: 16px;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+        margin-bottom: 14px;
+    }
+
+    .section-title i {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
+    }
+
+    /* ----- Details Grid - Single Column on Mobile ----- */
+    .details-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .detail-item {
+        padding: 10px 12px;
+        border-radius: 8px;
+    }
+
+    .detail-label {
+        font-size: 0.75rem;
+    }
+
+    .detail-value {
+        font-size: 0.9rem;
+    }
+
+    /* ----- Categories & Suppliers Container ----- */
+    .categories-container,
+    .suppliers-container {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .category-cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .category-card {
+        padding: 14px;
+        border-radius: 10px;
+    }
+
+    .category-form-container,
+    .supplier-form-container {
+        padding: 14px;
+        border-radius: 12px;
+    }
+
+    /* ----- Form Actions - Full Width Buttons ----- */
+    .form-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ============================================
+   6. FOOTER - COMPACT
+   ============================================ */
+
+@media (max-width: 768px) {
+    .footer {
+        margin-top: 20px;
+        padding: 14px 0;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+
+    .footer .copyright p,
+    .footer .version p {
+        font-size: 0.75rem;
+    }
+}
+
+/* ============================================
+   7. UTILITY CLASSES FOR MOBILE
+   ============================================ */
+
+@media (max-width: 768px) {
+    /* Hide elements on mobile */
+    .hide-mobile {
+        display: none !important;
+    }
+
+    /* Show elements only on mobile */
+    .show-mobile {
+        display: block !important;
+    }
+
+    /* Reduce whitespace utility */
+    .compact-mobile {
+        padding: 8px !important;
+        margin: 8px 0 !important;
+    }
+
+    /* Force scroll on overflow */
+    .scroll-mobile {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* ============================================
+   8. PRINT STYLES - Maintain Density
+   ============================================ */
+
+@media print {
+    .invoice-form {
+        padding: 20px;
+    }
+
+    .form-section {
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+    }
+
+    .btn,
+    .invoice-actions {
+        display: none;
+    }
+}

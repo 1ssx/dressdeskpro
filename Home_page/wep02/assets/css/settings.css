@@ -1,0 +1,536 @@
+/* ===== Settings Page Styles - Royal Luxury Theme ===== */
+
+:root {
+    --color-oudi: #2C0E15;
+    --color-khaki: #C8B085;
+    --color-annabi: #721b29;
+    --color-sukari-dark: #F2EFE7;
+    --color-text-main: #3D2B2E;
+    --shadow-soft: 0 4px 20px -5px rgba(0, 0, 0, 0.05);
+    --shadow-hover: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+.settings-section {
+    padding: 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    color: #2C0E15;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.section-title i {
+    color: #C8B085;
+}
+
+/* Tabs Navigation */
+.settings-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 0;
+    overflow-x: auto;
+}
+
+.tab-button {
+    background: transparent;
+    border: none;
+    color: #777;
+    padding: 15px 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    bottom: -2px;
+    white-space: nowrap;
+}
+
+.tab-button:hover {
+    color: #C8B085;
+    background: rgba(200, 176, 133, 0.05);
+}
+
+.tab-button.active {
+    color: #C8B085;
+    border-bottom-color: #C8B085;
+    background: transparent;
+}
+
+.tab-button i {
+    font-size: 1.1rem;
+    color: inherit;
+}
+
+/* Tab Content */
+.tab-content-wrapper {
+    margin-top: 30px;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Settings Card */
+.settings-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+.card-header {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.card-header h2 {
+    font-size: 1.4rem;
+    color: #2C0E15;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.card-header h2 i {
+    color: #C8B085;
+}
+
+.card-description {
+    color: #666;
+    font-size: 0.95rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Profile Avatar Section */
+.profile-avatar-section {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 30px;
+    padding: 25px;
+    background: #fafafa;
+    border-radius: 12px;
+    border: 1px solid #eee;
+}
+
+.avatar-display {
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
+    background: #fff;
+    border: 2px solid #C8B085;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.avatar-display i {
+    font-size: 3rem;
+    color: #C8B085;
+}
+
+.avatar-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.avatar-info h3 {
+    font-size: 1.4rem;
+    color: #2C0E15;
+    margin: 0 0 5px 0;
+}
+
+.profile-email {
+    color: #777;
+    font-size: 0.95rem;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    color: #333;
+    padding: 12px 16px;
+    border-radius: 10px;
+    width: 100%;
+    transition: all 0.2s;
+}
+
+.form-group input:focus {
+    border-color: #C8B085;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(200, 176, 133, 0.1);
+}
+
+.form-group input:read-only {
+    background: #f9f9f9;
+    color: #888;
+    box-shadow: none;
+    border-color: #eee;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 8px;
+    color: #999;
+    font-size: 0.85rem;
+}
+
+/* Card Actions */
+.card-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px solid #f0f0f0;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+/* Settings Note */
+.settings-note {
+    margin-top: 25px;
+    padding: 15px 20px;
+    background: #fffbf5;
+    /* Gold tint */
+    border-left: 4px solid #C8B085;
+    border-radius: 8px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.settings-note i {
+    color: #C8B085;
+    font-size: 1.2rem;
+    margin-top: 2px;
+}
+
+.settings-note p {
+    color: #666;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* Modals */
+.modal {
+    background-color: rgba(44, 14, 21, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: #fff;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+
+.modal-content h2 {
+    color: #2C0E15;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.close:hover {
+    color: #e74c3c;
+}
+
+/* Store Logo Section */
+.store-logo-section {
+    padding: 30px;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px dashed #ddd;
+    /* Dashed border for upload area feel */
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo-preview-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.logo-preview {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* ===== Image Cropper Modal Styles ===== */
+.cropper-modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    /* Higher than navbar/sidebar */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    overflow: auto;
+}
+
+.cropper-modal-content {
+    background: #fff;
+    margin: 3% auto;
+    padding: 30px;
+    border-radius: 16px;
+    max-width: 900px;
+    width: 90%;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.cropper-modal-content h2 {
+    color: #2C0E15;
+    margin: 0 0 25px 0;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cropper-modal-content h2 i {
+    color: #C8B085;
+}
+
+.cropper-modal .close {
+    color: #aaa;
+    float: left;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+    line-height: 1;
+    margin-top: -5px;
+}
+
+.cropper-modal .close:hover {
+    color: #e74c3c;
+}
+
+/* Critical: Container for cropper image */
+.cropper-container-wrapper {
+    width: 100%;
+    min-height: 500px;
+    max-height: 600px;
+    background: #f8f8f8;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    position: relative;
+    display: block;
+    /* CRITICAL: Prevent collapse */
+}
+
+.cropper-container-wrapper img {
+    max-width: 100%;
+    display: block;
+    height: auto;
+}
+
+/* Cropper.js overwrites - ensure visibility */
+.cropper-container {
+    width: 100% !important;
+    direction: ltr;
+    font-size: 0;
+    line-height: 0;
+    position: relative;
+    touch-action: none;
+    user-select: none;
+}
+
+/* Cropper Controls */
+.cropper-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0 0 0;
+    border-top: 2px solid #f0f0f0;
+}
+
+.cropper-controls .btn {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.cropper-controls .btn.primary {
+    background: linear-gradient(135deg, #2C0E15, #721b29);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(114, 27, 41, 0.3);
+}
+
+.cropper-controls .btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(114, 27, 41, 0.4);
+}
+
+.cropper-controls .btn.secondary {
+    background: #f5f5f5;
+    color: #555;
+    border: 1px solid #ddd;
+}
+
+.cropper-controls .btn.secondary:hover {
+    background: #e8e8e8;
+    border-color: #C8B085;
+    color: #2C0E15;
+}
+
+/* Loading State */
+.cropper-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 10001;
+    display: none;
+}
+
+.cropper-loading.active {
+    display: block;
+}
+
+.cropper-loading i {
+    font-size: 2rem;
+    color: #C8B085;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .settings-tabs {
+        padding-bottom: 10px;
+    }
+
+    .tab-button {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+
+    .profile-avatar-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .card-actions .btn {
+        width: 100%;
+    }
+
+    /* Cropper Modal Mobile Styles */
+    .cropper-modal-content {
+        width: 95%;
+        padding: 20px;
+        margin: 5% auto;
+    }
+
+    .cropper-modal-content h2 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+
+    .cropper-container-wrapper {
+        min-height: 300px;
+        max-height: 400px;
+    }
+
+    .cropper-controls {
+        gap: 8px;
+    }
+
+    .cropper-controls .btn {
+        padding: 10px 15px;
+        font-size: 0.85rem;
+        flex: 1 1 45%;
+    }
+
+    .cropper-controls .btn.primary {
+        flex: 1 1 100%;
+    }
+}

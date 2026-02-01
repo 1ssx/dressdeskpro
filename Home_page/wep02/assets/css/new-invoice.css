@@ -1,0 +1,256 @@
+/* ===== New Invoice Page Styles - Royal Design ===== */
+
+:root {
+    --color-oudi: #2C0E15;
+    --color-khaki: #C8B085;
+    --color-annabi: #721b29;
+    --color-sukari-dark: #F2EFE7;
+    --color-text-main: #3D2B2E;
+    --shadow-soft: 0 4px 20px -5px rgba(0, 0, 0, 0.05);
+    --shadow-hover: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.invoice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.invoice-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.invoice-actions .btn {
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 12px;
+}
+
+/* Form Container */
+.invoice-form {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.04);
+}
+
+.form-section {
+    margin-bottom: 35px;
+    border-bottom: 1px solid #f2f2f2;
+    padding-bottom: 30px;
+}
+
+.form-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.form-section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    color: #2C0E15;
+    /* Oud color */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+}
+
+.form-section h3 i {
+    color: #C8B085;
+    /* Gold color */
+    background: rgba(200, 176, 133, 0.1);
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+/* Form Grid */
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.form-group {
+    flex: 1;
+    min-width: 250px;
+}
+
+.form-group.full-width {
+    flex-basis: 100%;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+/* Inputs */
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="tel"],
+.form-group input[type="date"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid #e0e0e0;
+    background: #ffffff;
+    border-radius: 12px;
+    color: #333;
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: none;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #C8B085;
+    outline: none;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(200, 176, 133, 0.1);
+    transform: translateY(-1px);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #aaa;
+}
+
+/* Readonly Inputs - Distinct Style */
+.form-group input[readonly] {
+    background: #fafafa;
+    color: #777;
+    border-color: #eee;
+    cursor: default;
+    font-weight: 600;
+}
+
+#invoice-number {
+    letter-spacing: 1px;
+    font-family: 'Roboto', sans-serif;
+    color: #2C0E15;
+}
+
+/* Total Price Special Style */
+#total-price {
+    font-weight: 700;
+    color: #2C0E15;
+    font-size: 1.1rem;
+    background: #fffbf5;
+    /* Very subtle gold tint */
+    border-color: rgba(200, 176, 133, 0.3);
+}
+
+#remaining-balance {
+    font-weight: 700;
+    color: #c0392b;
+    /* Red for emphasis */
+}
+
+/* Checkboxes */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 5px;
+    padding: 15px;
+    background: #fafafa;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+}
+
+.checkbox-group:hover {
+    background: #f5f5f5;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    accent-color: #C8B085;
+    margin: 0;
+}
+
+.checkbox-group label {
+    margin-bottom: 0;
+    cursor: pointer;
+    font-weight: 600;
+    color: #444;
+}
+
+/* Modals */
+.modal {
+    background-color: rgba(44, 14, 21, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: #fff;
+    color: #333;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    max-width: 600px;
+    width: 90%;
+    padding: 35px;
+}
+
+.modal h2 {
+    color: #2C0E15;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    font-size: 1.4rem;
+}
+
+.modal .close {
+    color: #aaa;
+    font-size: 1.8rem;
+    transition: color 0.3s;
+}
+
+.modal .close:hover {
+    color: #e74c3c;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .invoice-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .invoice-actions {
+        flex-direction: column;
+    }
+
+    .invoice-form {
+        padding: 25px;
+    }
+
+    .form-row {
+        gap: 15px;
+    }
+}

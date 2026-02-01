@@ -1,0 +1,241 @@
+/**
+ * Invoice Details Page Styles
+ * متوافق مع التصميم الحالي للنظام
+ */
+
+/* أنماط إضافية خاصة بصفحة التفاصيل */
+.invoice-container {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* تحسين الجداول */
+.table-responsive table tr:last-child td {
+    border-bottom: none;
+}
+
+.table-responsive table tbody tr:hover {
+    background: #f8f9fa;
+    transition: background 0.2s;
+}
+
+/* Timeline محسّن - Vertical Design */
+.timeline {
+    position: relative;
+    padding: 20px 0;
+}
+
+/* Vertical Line */
+.timeline::before {
+    content: '';
+    position: absolute;
+    right: 22px;
+    /* Center of marker */
+    top: 20px;
+    bottom: 0;
+    width: 2px;
+    background: #e0e0e0;
+    border-radius: 2px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 25px;
+    padding-right: 60px;
+    /* Space for marker */
+    opacity: 0;
+    animation: slideIn 0.3s ease-out forwards;
+}
+
+.timeline-item:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.timeline-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.timeline-item:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.timeline-item:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.timeline-item:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+/* Marker */
+.timeline-marker {
+    position: absolute;
+    right: 15px;
+    top: 20px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--secondary-color, #c5a059);
+    border: 3px solid white;
+    box-shadow: 0 0 0 2px var(--secondary-color, #c5a059);
+    z-index: 2;
+}
+
+/* Content Box */
+.timeline-content {
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.timeline-content:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+    border-color: rgba(200, 176, 133, 0.3);
+}
+
+/* Arrow */
+.timeline-content::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 22px;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-top: 1px solid #f0f0f0;
+    border-right: 1px solid #f0f0f0;
+    transform: rotate(45deg);
+}
+
+.timeline-content:hover::after {
+    border-color: rgba(200, 176, 133, 0.3);
+}
+
+/* Timeline Components */
+.timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.timeline-badges {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.timeline-time {
+    font-size: 0.8rem;
+    color: #999;
+    font-family: sans-serif;
+    background: #f9f9f9;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.timeline-meta {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.timeline-meta i {
+    color: var(--secondary-color, #c5a059);
+}
+
+.timeline-notes {
+    font-size: 0.95rem;
+    color: #333;
+    padding-top: 10px;
+    border-top: 1px dashed #eee;
+    line-height: 1.6;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .invoice-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-card {
+        padding: 15px;
+    }
+
+    .invoice-header {
+        padding: 15px;
+    }
+
+    .invoice-header>div {
+        flex-direction: column;
+    }
+
+    .modal-content {
+        margin: 10% auto;
+        padding: 20px;
+        max-width: 90%;
+    }
+
+    table {
+        font-size: 0.9rem;
+    }
+
+    table th,
+    table td {
+        padding: 8px 5px;
+    }
+}
+
+/* Print Styles */
+@media print {
+
+    .btn-action,
+    .section-title button,
+    nav,
+    .navbar {
+        display: none !important;
+    }
+
+    .section-card {
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+
+    body {
+        background: white;
+    }
+}

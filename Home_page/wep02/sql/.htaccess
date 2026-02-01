@@ -1,0 +1,15 @@
+# =======================================================
+# BLOCK ALL ACCESS TO SQL DIRECTORY
+# This directory contains SQL schema and migration files
+# that expose database structure - NEVER expose publicly
+# =======================================================
+
+# Deny all access
+Order deny,allow
+Deny from all
+
+# Alternative method using mod_rewrite
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule .* - [F,L]
+</IfModule>

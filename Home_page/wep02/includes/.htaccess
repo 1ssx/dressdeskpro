@@ -1,0 +1,15 @@
+# =======================================================
+# BLOCK ALL ACCESS TO INCLUDES DIRECTORY
+# This directory contains PHP include files that should
+# only be included by other PHP files, not accessed directly
+# =======================================================
+
+# Deny all access
+Order deny,allow
+Deny from all
+
+# Alternative method using mod_rewrite
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule .* - [F,L]
+</IfModule>

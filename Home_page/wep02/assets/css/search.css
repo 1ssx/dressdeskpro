@@ -1,0 +1,100 @@
+/* Global Search Results Dropdown */
+.search-results-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    /* RTL alignment */
+    width: 100%;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    margin-top: 10px;
+    overflow: hidden;
+    display: none;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    animation: fadeIn 0.2s ease-out;
+}
+
+.search-results-dropdown.active {
+    display: block;
+}
+
+.search-result-item {
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: inherit;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background: rgba(200, 176, 133, 0.1);
+}
+
+.search-result-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(44, 14, 21, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2C0E15;
+    flex-shrink: 0;
+}
+
+.search-result-type-invoice .search-result-icon {
+    background: rgba(52, 152, 219, 0.1);
+    color: #3498db;
+}
+
+.search-result-type-customer .search-result-icon {
+    background: rgba(46, 204, 113, 0.1);
+    color: #2ecc71;
+}
+
+.search-result-info {
+    flex: 1;
+}
+
+.search-result-title {
+    font-weight: 700;
+    color: #2C0E15;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.search-result-subtitle {
+    font-size: 0.85rem;
+    color: #888;
+    display: block;
+}
+
+.search-no-results {
+    padding: 20px;
+    text-align: center;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

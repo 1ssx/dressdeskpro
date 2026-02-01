@@ -1,0 +1,208 @@
+# =======================================================
+# PRODUCTION SECURITY - Root .htaccess
+# Multi-Tenant SaaS System Security Configuration
+# =======================================================
+
+# Disable directory browsing
+Options -Indexes
+
+# Disable server signature
+ServerSignature Off
+
+# =======================================================
+# PROTECT SENSITIVE FILES
+# =======================================================
+
+# Block access to .env file (CRITICAL)
+<FilesMatch "^\.env$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Block access to .env.example 
+<FilesMatch "^\.env\.example$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Block access to .git directory
+<FilesMatch "^\.git">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Block access to .gitignore
+<FilesMatch "^\.gitignore$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Block access to markdown files (documentation)
+<FilesMatch "\.(md|markdown)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Block access to SQL files
+<FilesMatch "\.sql$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Block access to log files
+<FilesMatch "\.log$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Block access to text files (reports, status)
+<FilesMatch "\.(txt|bak|backup)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Block access to batch/shell files
+<FilesMatch "\.(bat|sh|bash)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# =======================================================
+# PROTECT SENSITIVE DIRECTORIES
+# =======================================================
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Block access to app directory (application code)
+    RewriteRule ^app/ - [F,L]
+    
+    # Block access to config directory
+    RewriteRule ^config/ - [F,L]
+    
+    # Block access to includes directory
+    RewriteRule ^includes/ - [F,L]
+    
+    # Block access to migrations directory
+    RewriteRule ^migrations/ - [F,L]
+    
+    # Block access to sql directory
+    RewriteRule ^sql/ - [F,L]
+    
+    # Block access to tests directory
+    RewriteRule ^tests/ - [F,L]
+    
+    # Block access to database directory
+    RewriteRule ^database/ - [F,L]
+    
+    # Block access to cache directory
+    RewriteRule ^cache/ - [F,L]
+    
+    # Block access to .agent directory
+    RewriteRule ^\.agent/ - [F,L]
+    
+    # Block access to .git directory
+    RewriteRule ^\.git/ - [F,L]
+</IfModule>
+
+# =======================================================
+# BLOCK DEVELOPMENT/DEBUG PHP FILES
+# =======================================================
+
+# Block known debug/test files at root level
+<FilesMatch "^(verify_database|test_signup_flow|test_db_connection|test_database_status|run_master_migrations|migrate|create_test_codes|check_system|check_status|analyze_schema|debug_deep|debug_stores)\.php$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# =======================================================
+# PHP SECURITY SETTINGS
+# Note: For local development, errors are controlled by 
+# APP_DEBUG in .env. These settings are production defaults.
+# On XAMPP, php.ini settings take precedence.
+# =======================================================
+
+<IfModule mod_php.c>
+    # Error handling is controlled by the application based on APP_DEBUG
+    # Uncomment below for production-only override:
+    # php_value display_errors Off
+    # php_value display_startup_errors Off
+    
+    # Always enable error logging
+    php_value log_errors On
+    php_value error_reporting E_ALL
+    
+    # Session security
+    php_value session.cookie_httponly 1
+    php_value session.use_only_cookies 1
+    # Note: cookie_samesite may not work on older PHP versions
+    # php_value session.cookie_samesite "Strict"
+    
+    # Upload limits
+    php_value upload_max_filesize 10M
+    php_value post_max_size 12M
+    
+    # Disable dangerous functions
+    php_value expose_php Off
+</IfModule>
+
+# =======================================================
+# SECURITY HEADERS
+# =======================================================
+
+<IfModule mod_headers.c>
+    # Prevent MIME type sniffing
+    Header always set X-Content-Type-Options "nosniff"
+    
+    # XSS Protection
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Clickjacking protection
+    Header always set X-Frame-Options "SAMEORIGIN"
+    
+    # Referrer Policy
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Remove server version info
+    Header unset X-Powered-By
+    Header unset Server
+</IfModule>
+
+# =======================================================
+# CACHING FOR STATIC ASSETS
+# =======================================================
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Images
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType image/x-icon "access plus 1 year"
+    
+    # CSS and JavaScript
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+    ExpiresByType text/javascript "access plus 1 week"
+    
+    # Fonts
+    ExpiresByType font/woff2 "access plus 1 month"
+    ExpiresByType font/woff "access plus 1 month"
+    ExpiresByType font/ttf "access plus 1 month"
+</IfModule>
+
+# =======================================================
+# GZIP COMPRESSION
+# =======================================================
+
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
